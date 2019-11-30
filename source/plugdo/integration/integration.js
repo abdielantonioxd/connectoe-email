@@ -1,7 +1,20 @@
-plugdo.integration("get-data", (message, send) => {
+plugdo.integration("send-email", (message, send) => {
   let response = {};
   // console.log(message)
-  plugdo.collect("MysqlSendDataGeneral").get(message, (data, err) => {
+
+  var emailData = {
+    from: {
+      email: "abdielantonio.af@gmail.com"
+    },
+    context: {
+     data:{
+      name: "Abdiel",
+      totalP: 400,
+      cantidad: 9
+     }
+    }
+  }
+  plugdo.collect("emailSend").get(emailData, (data, err) => {
     if (err) {
       send({}, err);
     } else {
